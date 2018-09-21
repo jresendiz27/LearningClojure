@@ -4,11 +4,11 @@
 
 (def numbers [1, 2, 3, 4, 5, 6, 7, 8])
 
-(def large-range (into [] (range 0 1000000)) )
+(def large-range (into [] (range 0 100000)) )
 
 (deftest compare-sums
   (testing "Compare the sums"
-    (is (<  (time (parallel-sum large-range))
+    (is (=  (time (parallel-sum large-range))
             (time (simple-sum large-range))))))
 (deftest parallel-sum-test
   (testing "Parallel-sum using reducers and clojure core"
