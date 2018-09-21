@@ -4,7 +4,7 @@
 
 (def numbers [1, 2, 3, 4, 5, 6, 7, 8])
 
-(def large-range (into [] (range 0 100000)) )
+(def large-range (into [] (range 0 100)) )
 
 (deftest compare-sums
   (testing "Compare the sums"
