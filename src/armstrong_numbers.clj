@@ -1,25 +1,21 @@
 (ns armstrong-numbers)
 
-(defn digit-list [num]
-  (let [
-        result (/ num 10)
-        reminder (rem num 10)]
-    (if (not= result 0)
-      (cons reminder (digit-list (/ (- num reminder) 10)))
-      nil)))
+(defn digits [num]
+  (if (pos? num)
+    (conj (digits (quot num 10)) (mod num 10))
+    []))
 
 (defn exp [base exponent]
   (reduce * (repeat exponent base)))
 
-(defn reduce-digits [list size]
+(defn armstrong-definition [list size]
   (if (empty? list)
     0
-    (+
-      (exp (first list) size)
-      (reduce-digits (rest list) size))))
+    (+ (exp (first list) size)
+       (armstrong-definition (rest list) size))))
 
 (defn armstrong? [num]
-  (let [digits (digit-list num)]
-    (if (= num (reduce-digits (reverse digits) (count digits)))
+  (let [digits (digits num)]
+    (if (= num (armstrong-definition digits (count digits)))
       true
       false)))
